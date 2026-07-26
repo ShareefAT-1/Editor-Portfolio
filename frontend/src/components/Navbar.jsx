@@ -16,6 +16,54 @@ function Navbar() {
         zIndex: 1000,
       }}
     >
+      <style>
+        {`
+    .nav-link {
+      position: relative;
+      text-decoration: none;
+      color: #fff;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -6px;
+      width: 0;
+      height: 1px;
+      background: #fff;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .hire-btn {
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .hire-btn:hover {
+      transform: translateY(-4px);
+      background: #dedede !important;
+      box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+    }
+
+    .hire-btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+  `}
+      </style>
       {/* Logo */}
       <h2
         style={{
@@ -35,13 +83,14 @@ function Navbar() {
           gap: "35px",
         }}
       >
-        <a href="#hero" style={linkStyle}>Home</a>
-        <a href="#projects" style={linkStyle}>Projects</a>
-        <a href="#services" style={linkStyle}>Services</a>
-        <a href="#about" style={linkStyle}>About</a>
-        <a href="#contact" style={linkStyle}>Contact</a>
+        <a href="#hero" className="nav-link" style={linkStyle}>Home</a>
+        <a href="#projects" className="nav-link" style={linkStyle}>Projects</a>
+        <a href="#services" className="nav-link" style={linkStyle}>Services</a>
+        <a href="#about" className="nav-link" style={linkStyle}>About</a>
+        <a href="#contact" className="nav-link" style={linkStyle}>Contact</a>
 
         <button
+          className="hire-btn"
           style={{
             padding: "10px 22px",
             border: "none",

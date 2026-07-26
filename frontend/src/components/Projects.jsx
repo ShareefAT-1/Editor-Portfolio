@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProjects } from "../services/api.js";
+import { Link } from "react-router-dom";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -21,20 +22,6 @@ function Projects() {
 
     loadProjects();
   }, []);
-
-  const getYouTubeId = (url) => {
-    try {
-      const parsedUrl = new URL(url);
-
-      if (parsedUrl.hostname.includes("youtu.be")) {
-        return parsedUrl.pathname.slice(1);
-      }
-
-      return parsedUrl.searchParams.get("v");
-    } catch {
-      return null;
-    }
-  };
 
   return (
     <section
@@ -114,21 +101,23 @@ function Projects() {
             gap: "30px",
           }}
         >
-          {projects.map((project) => {
-            const videoId = getYouTubeId(project.videoUrl);
-
-            const embedUrl = videoId
-              ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&start=${project.previewStart}&end=${project.previewEnd}&rel=0`
-              : null;
-
-            return (
+          {projects.map((project) => (
+            <Link
+              key={project._id}
+              to={`/projects/${project._id}`}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "block",
+              }}
+            >
               <div
-                key={project._id}
                 style={{
                   background: "#111",
                   border: "1px solid #222",
                   borderRadius: "16px",
                   overflow: "hidden",
+                  cursor: "pointer",
                 }}
               >
                 <div
@@ -138,32 +127,20 @@ function Projects() {
                     overflow: "hidden",
                   }}
                 >
-                  {embedUrl ? (
-                    <iframe
-                      src={embedUrl}
-                      title={project.title}
-                      width="100%"
-                      height="100%"
-                      allow="autoplay; encrypted-media"
-                      style={{
-                        border: "none",
-                        display: "block",
-                        pointerEvents: "none",
-                      }}
-                    />
-                  ) : (
-                    <div
-                      style={{
-                        height: "100%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#555",
-                      }}
-                    >
-                      VIDEO UNAVAILABLE
-                    </div>
-                  )}
+                  <video
+                    src={project.videoUrl}
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    controls={false}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
                 </div>
 
                 <div
@@ -191,8 +168,8 @@ function Projects() {
                   </p>
                 </div>
               </div>
-            );
-          })}
+            </Link>
+          ))}
         </div>
       </div>
     </section>

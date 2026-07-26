@@ -11,6 +11,37 @@ function About() {
         alignItems: "center",
       }}
     >
+      {/* Button animation */}
+      <style>
+        {`
+          .about-btn {
+            transition:
+              transform 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease;
+          }
+
+          .about-btn:hover {
+            transform: translateY(-4px);
+            background: #dedede !important;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+          }
+
+          .about-btn:active {
+            transform: translateY(-1px) scale(0.98);
+          }
+
+          .about-btn-text {
+            display: inline-block;
+            // transition: transform 0.3s ease;
+          }
+
+          .about-btn:hover .about-btn-text {
+            transform: translateX(3px);
+          }
+        `}
+      </style>
+
       <div
         style={{
           maxWidth: "1400px",
@@ -80,6 +111,7 @@ function About() {
 
           <a
             href="#contact"
+            className="about-btn"
             style={{
               display: "inline-block",
               marginTop: "35px",
@@ -91,7 +123,7 @@ function About() {
               borderRadius: "6px",
             }}
           >
-            Let's Work Together
+            <span className="about-btn-text">Let's Work Together</span>
           </a>
         </div>
       </div>

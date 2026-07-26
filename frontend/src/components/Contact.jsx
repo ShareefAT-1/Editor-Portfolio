@@ -12,6 +12,35 @@ function Contact() {
         boxSizing: "border-box",
       }}
     >
+      <style>
+        {`
+    .contact-btn {
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-4px);
+      background: #dedede !important;
+      box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+    }
+
+    .contact-btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    .contact-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-btn:hover .contact-arrow {
+      transform: translateX(4px);
+    }
+  `}
+      </style>
       <div
         style={{
           width: "100%",
@@ -68,7 +97,9 @@ function Contact() {
           </p>
 
           <a
-            href="mailto:editor@example.com?subject=Video Editing Project&body=Hi, I would like to discuss a video editing project." style={{
+            href="mailto:editor@example.com?subject=Video Editing Project&body=Hi, I would like to discuss a video editing project."
+            className="contact-btn"
+            style={{
               display: "inline-block",
               padding: "18px 34px",
               background: "#fff",
@@ -79,7 +110,7 @@ function Contact() {
               fontSize: "17px",
             }}
           >
-            Start a Project →
+            Start a Project <span className="contact-arrow">→</span>
           </a>
         </div>
 

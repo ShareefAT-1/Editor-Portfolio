@@ -14,6 +14,74 @@ function Hero() {
         boxSizing: "border-box",
       }}
     >
+      {/* Button animations */}
+      <style>
+        {`
+          .hero-btn {
+            transition:
+              transform 0.3s ease,
+              background 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+          }
+
+          .hero-btn:hover {
+            transform: translateY(-4px);
+          }
+
+          .hero-btn:active {
+            transform: translateY(-1px) scale(0.98);
+          }
+
+          .hero-primary:hover {
+            background: #dedede !important;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+          }
+
+          .hero-secondary:hover {
+            background: #fff !important;
+            color: #000 !important;
+            border-color: #fff !important;
+          }
+
+          .hero-arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+          }
+
+          .hero-primary:hover .hero-arrow {
+            transform: translateY(4px);
+          }
+        `}
+      </style>
+
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: 0,
+        }}
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(0,0,0,0.45)",
+          zIndex: 1,
+        }}
+      />
+
       {/* Background text */}
       <div
         style={{
@@ -50,6 +118,8 @@ function Hero() {
           width: "100%",
           maxWidth: "1400px",
           margin: "0 auto",
+          position: "relative",
+          zIndex: 2,
         }}
       >
         {/* Eyebrow */}
@@ -141,6 +211,7 @@ function Hero() {
           >
             <a
               href="#projects"
+              className="hero-btn hero-primary"
               style={{
                 padding: "17px 32px",
                 background: "#fff",
@@ -150,11 +221,12 @@ function Hero() {
                 borderRadius: "4px",
               }}
             >
-              View Work ↓
+              View Work <span className="hero-arrow">↓</span>
             </a>
 
             <a
               href="#contact"
+              className="hero-btn hero-secondary"
               style={{
                 padding: "16px 32px",
                 background: "transparent",
