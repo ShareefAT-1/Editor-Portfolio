@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿﻿import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getProjectById } from "../services/api";
 
@@ -101,7 +101,7 @@ function ProjectDetails() {
               letterSpacing: "4px",
               textTransform: "uppercase",
               fontSize: "13px",
-              transition: "all 0.3s ease",
+              transition: "all .3s ease",
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
@@ -110,7 +110,7 @@ function ProjectDetails() {
             <span
               style={{
                 transform: isBackHovered ? "translateX(-4px)" : "translateX(0)",
-                transition: "transform 0.3s ease",
+                transition: "transform .3s ease",
               }}
             >
               ←
@@ -119,92 +119,92 @@ function ProjectDetails() {
             Back To Portfolio
           </Link>
 
-          <p
-            style={{
-              marginTop: "80px",
-              color: "#d6b06a",
-              letterSpacing: "7px",
-              textTransform: "uppercase",
-              fontSize: "13px",
-            }}
-          >
-            Featured Project
-          </p>
-
-          <h1
-            style={{
-              margin: "25px 0",
-              fontSize: "clamp(70px,10vw,130px)",
-              lineHeight: ".9",
-              textTransform: "uppercase",
-              letterSpacing: "3px",
-              fontWeight: "700",
-              maxWidth: "1100px",
-            }}
-          >
-            {project.title}
-          </h1>
-
-          <p
-            style={{
-              color: "#b0b0b0",
-              fontSize: "22px",
-              lineHeight: "1.9",
-              maxWidth: "700px",
-            }}
-          >
-            {project.description}
-          </p>
-
           <div
             style={{
-              marginTop: "100px",
-              display: "flex",
+              display: "grid",
+              gridTemplateColumns: "1.25fr 1fr",
+              gap: "70px",
               alignItems: "center",
-              gap: "14px",
-              color: "#777",
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              fontSize: "12px",
+              marginTop: "60px",
             }}
           >
+            {/* VIDEO */}
+
             <div
               style={{
-                width: "55px",
-                height: "1px",
-                background: "#555",
+                borderRadius: "28px",
+                overflow: "hidden",
+                background: "#111",
+                boxShadow: "0 40px 100px rgba(0,0,0,.45)",
               }}
-            />
+            >
+              <video
+                src={project.videoUrl}
+                controls
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  width: "100%",
+                  display: "block",
+                  aspectRatio: "16/9",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
 
-            Scroll To Watch
+            {/* TEXT */}
+
+            <div>
+              <p
+                style={{
+                  color: "#d6b06a",
+                  letterSpacing: "6px",
+                  textTransform: "uppercase",
+                  fontSize: "13px",
+                  marginBottom: "20px",
+                }}
+              >
+                Featured Project
+              </p>
+
+              <h1
+                style={{
+                  fontSize: "clamp(56px,6vw,96px)",
+                  lineHeight: ".9",
+                  margin: 0,
+                  textTransform: "uppercase",
+                }}
+              >
+                {project.title}
+              </h1>
+
+              <p
+                style={{
+                  marginTop: "28px",
+                  color: "#b0b0b0",
+                  lineHeight: "1.9",
+                  fontSize: "20px",
+                }}
+              >
+                {project.description}
+              </p>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: "45px",
+                  marginTop: "45px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Info title="Category" value="Automotive Edit" />
+                <Info title="Software" value="Premiere Pro" />
+                <Info title="Year" value="2026" />
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ================= VIDEO ================= */}
-
-      <section
-        style={{
-          padding: "0 5% 140px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1700px",
-            margin: "0 auto",
-          }}
-        >
-          <video
-            src={project.videoUrl}
-            controls
-            style={{
-              width: "100%",
-              display: "block",
-              borderRadius: "30px",
-              overflow: "hidden",
-              boxShadow: "0 60px 120px rgba(0,0,0,.6)",
-            }}
-          />
         </div>
       </section>
 
@@ -307,62 +307,7 @@ function ProjectDetails() {
         </div>
       </section>
 
-      {/* ================= GALLERY ================= */}
-
-      <section
-        style={{
-          padding: "20px 8% 140px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1500px",
-            margin: "0 auto",
-          }}
-        >
-          <p
-            style={{
-              color: "#d6b06a",
-              letterSpacing: "6px",
-              textTransform: "uppercase",
-              fontSize: "13px",
-              marginBottom: "45px",
-            }}
-          >
-            Selected Frames
-          </p>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3,1fr)",
-              gap: "25px",
-            }}
-          >
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                style={{
-                  height: "260px",
-                  borderRadius: "24px",
-                  background:
-                    "linear-gradient(135deg,#222,#111,#181818)",
-                  border: "1px solid rgba(255,255,255,.05)",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "#666",
-                  fontSize: "14px",
-                  letterSpacing: "3px",
-                  textTransform: "uppercase",
-                }}
-              >
-                Frame {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      nv
 
       {/* ================= QUOTE ================= */}
 
